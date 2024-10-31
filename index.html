@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usługi Jazd Samochodowych</title>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Jasny beżowy */
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333; /* Ciemnoszary */
+        }
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #a8d99f 0%, #1d3557 100%); /* Pistacjowy gradient */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        h1 {
+            font-size: 3.5em;
+            color: #ffffff;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        .menu-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-color: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 2em;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .menu-button:hover {
+            transform: scale(1.1);
+        }
+        .sidebar {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100px;
+            background-color: #a8d99f; /* Pistacjowy */
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .sidebar.open {
+            display: block;
+        }
+        nav {
+            background-color: #a8d99f; /* Pistacjowy */
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        nav a {
+            color: white;
+            margin: 5px 0;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: 1px solid transparent;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid #ffffff;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #1d3557; /* Ciemny niebieski */
+        }
+        .service-card {
+            background-color: #e3f9e5; /* Bardzo jasny pistacjowy */
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            margin-top: 10px;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #1d3557; /* Ciemny niebieski */
+            color: white;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+        button:hover {
+            background-color: #457b9d; /* Jaśniejszy niebieski */
+            transform: translateY(-2px);
+        }
+        .opinions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .opinion-card {
+            background-color: #e3f9e5; /* Bardzo jasny pistacjowy */
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+        }
+        .stars {
+            color: gold;
+            margin: 5px 0;
+        }
+        .opinion-card p {
+            color: #000000;
+        }
+        .contact-section {
+            background-color: #ffffff; /* Białe tło */
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 30px 0;
+        }
+        .footer {
+            background-color: #1d3557; /* Ciemny niebieski */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <button class="menu-button" onclick="toggleSidebar()">&#9776;</button>
+        <h1>Usługi Jazd Samochodowych</h1>
+    </header>
+    <div id="sidebar" class="sidebar">
+        <nav>
+            <a href="cennik.html">Cennik</a>
+            <a href="http://127.0.0.1:5500/miejscaspotkan.html">Miejsca Spotkania</a> <!-- Link do miejsc spotkań -->
+            <a href="#dlugosc">Długość Jazd</a>
+            <a href="kalendarz.html">Kalendarz</a>
+        </nav>
+    </div>
+    <main>
+        <div class="video-container">
+            <h2>Nasze Usługi</h2>
+            <div class="service-card">
+                <h3>Jazdy Doszkalające</h3>
+                <p>Oferujemy jazdy doszkalające dla kierowców w każdym wieku. Zwiększ swoje umiejętności za kierownicą!</p>
+                <button>Zarezerwuj Jazdę</button>
+            </div>
+            <div class="service-card">
+                <h3>Jazdy dla Początkujących</h3>
+                <p>Specjalne kursy dla nowych kierowców. Naucz się wszystkiego, co potrzebne do bezpiecznej jazdy.</p>
+                <button>Zarezerwuj Jazdę</button>
+            </div>
+            <div class="service-card">
+                <h3>Transport i Przewóz</h3>
+                <p>Bezpieczny transport do miejsca docelowego. Idealne dla osób potrzebujących pomocy w podróży.</p>
+                <button>Zarezerwuj Transport</button>
+            </div>
+        </div>
+
+        <h2>Opinie naszych klientów</h2>
+        <div class="opinions">
+            <div class="opinion-card">
+                <div class="stars">★★★★★</div>
+                <p>Świetna szkoła jazdy! Polecam każdemu!</p>
+                <p>- Kasia, Warszawa</p>
+            </div>
+            <div class="opinion-card">
+                <div class="stars">★★★★★</div>
+                <p>Instruktorzy bardzo cierpliwi i pomocni.</p>
+                <p>- Tomek, Kraków</p>
+            </div>
+            <div class="opinion-card">
+                <div class="stars">★★★★★</div>
+                <p>Rzetelna firma, pełen profesjonalizm.</p>
+                <p>- Ewa, Poznań</p>
+            </div>
+            <div class="opinion-card">
+                <div class="stars">★★★★★</div>
+                <p>Fantastyczna atmosfera podczas jazd!</p>
+                <p>- Piotr, Łódź</p>
+            </div>
+            <div class="opinion-card">
+                <div class="stars">★★★★★</div>
+                <p>Super podejście do klienta, z pewnością wrócę!</p>
+                <p>- Ania, Gdańsk</p>
+            </div>
+            <div class="opinion-card">
+                <div class="stars">★★★★★</div>
+                <p>Najlepsza szkoła jazdy w mieście!</p>
+                <p>- Michał, Wrocław</p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h3>Skontaktuj się z nami</h3>
+            <p>Kontakt: 000000000</p>
+            <p>Email: przyklad@gmail.com</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Usługi Jazd Samochodowych. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+</body>
+</html>
